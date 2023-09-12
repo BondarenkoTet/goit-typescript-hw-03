@@ -22,9 +22,9 @@ class Person {
 }
 
 abstract class House {
-  door: boolean = false;
-  key: Key;
-  tenants: Person[] = [];
+  protected door: boolean = false;
+  protected key: Key;
+  protected tenants: Person[] = [];
 
   comeIn(person: Person): void {
     if ((this.door = true)) {
@@ -39,7 +39,7 @@ abstract class House {
 
 class MyHouse extends House {
   OpenDoor(key: Key) {
-    if (key.getSignature()) {
+    if (key.getSignature() === this.key.getSignature()) {
       this.door = true;
       this.key = key;
       return true;
