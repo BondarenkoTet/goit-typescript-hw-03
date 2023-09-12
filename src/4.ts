@@ -16,8 +16,8 @@ class Person {
     this.key = key;
   }
 
-  getKey() {
-    return Key;
+  getKey(): Key {
+    return this.key;
   }
 }
 
@@ -26,7 +26,7 @@ abstract class House {
   key: Key;
   tenants: Person[] = [];
 
-  comeIn(person: Person) {
+  comeIn(person: Person): void {
     if ((this.door = true)) {
       this.tenants.push(person);
       console.log("Welcome!");
@@ -38,8 +38,8 @@ abstract class House {
 }
 
 class MyHouse extends House {
-  OpenDoor() {
-    if (this.key === key) {
+  OpenDoor(key: Key) {
+    if (key.getSignature()) {
       this.door = true;
       this.key = key;
       return true;
@@ -53,7 +53,7 @@ const key = new Key();
 const house = new MyHouse();
 const person = new Person(key);
 
-house.OpenDoor();
+house.OpenDoor(person.getKey());
 
 house.comeIn(person);
 
